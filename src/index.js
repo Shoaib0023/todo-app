@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AddTodo from './containers/addTodo' ;
-import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap/dist/css/bootstrap.css'
 import { Provider } from 'react-redux' ;
 import { createStore } from 'redux' ;
 import allReducer from './reducers/index' ;
