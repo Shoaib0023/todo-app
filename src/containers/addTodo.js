@@ -12,9 +12,8 @@ import uuid from "react-uuid" ;
 class AddTodo extends Component {
     constructor(props){
         super(props) ;
-        this.state = { 
-            'title': "" ,
-            'completed': false
+        this.state = {
+            'title': ""
         }
     }
 
@@ -23,7 +22,7 @@ class AddTodo extends Component {
             [e.target.name]: e.target.value
         })
     }
-    
+
     handleCheckboxChange = (e) => {
         this.setState({
             'completed': e.target.checked
@@ -37,7 +36,11 @@ class AddTodo extends Component {
             "title": this.state.title ,
             "completed": this.state.completed
         }
-        
+
+        this.setState({
+            title: ''
+        })
+
         this.props.addTodo(todoobj)
     }
 
@@ -54,65 +57,59 @@ class AddTodo extends Component {
     todoTitle = (todo) => {
         if(todo.completed === true){
             return (
-                <h5 style={checkboxDecoration}>{ todo.title } </h5>
+                <h5 id="title" style={checkboxDecoration}>{ todo.title } </h5>
             )
         }
 
         else {
-            return <h5>{ todo.title } </h5>
+            return <h5 id="title">{ todo.title } </h5>
         }
     }
-    
+
+    deleteBtn = (todo) => {
+      if(todo.completed === true){
+        return (
+          <button className="btn btn-sm btn-danger submit-btn fadebtn" onClick={() => this.props.deleteTodo(todo.id)}>Delete</button>
+        )
+      }
+
+      else {
+        return (
+          <button className="btn btn-sm btn-danger submit-btn" onClick={() => this.props.deleteTodo(todo.id)}>Delete</button>
+        )
+
+      }
+    }
+
 
     render() {
         return (
             <main>
-            <div id="main">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="row justify-content-center">
-                        
-                        <div className="col-lg-6 col-sm-12">
-                            <div className="form-group">
-                                <input type="text" name="title" className="form-control" value={this.state.title} placeholder="Enter the todo..." onChange= {this.handleChange} />
-                            </div>
+                <div className="row text-center" id="header">
+                  <div className="col-12">
+                     <h3 className="display-4"><strong>TODOS</strong></h3>
+                  </div>
+                </div>
+
+                <div id="form-container">
+                  <form onSubmit={this.handleSubmit}>
+                       <input type="text" name="title" className="form-control" value={this.state.title} placeholder="Enter a thing to do . . ." onChange= {this.handleChange} />
+                  </form>
+                </div>
+
+                <div id="todo-container">
+                    {this.props.todos.map(todo =>
+                        <div className="todo" key={todo.id}>
+                            <input type="checkbox" name="completed" className="mr-3 check-btn" checked={this.handleChecked(todo)} onChange={() => this.props.checkTodo(todo.id)} />
+
+                            {this.todoTitle(todo)}
+
+                            {this.deleteBtn(todo)}
+
                         </div>
-                        
-                        <div className="col-lg-1 col-sm-12">
-                            <button type="submit" className="btn btn-primary">Submit</button>
-                        </div>
-                    
-                    </div>
-                </form>
+                      )}
+                </div>
 
-                {this.props.todos.map(todo => 
-                        <div className="row justify-content-center mt-5">
-                            <div className="col-lg-7 col-sm-12">
-
-                                <div className="card" key={todo.id}>
-                                    <div className="card-body">
-
-                                        <div className="row justify-content-around">
-
-                                            <div className="col-lg-1 col-sm-1">         
-                                                <input type="checkbox" name="completed" className="mr-3" checked={this.handleChecked(todo)} onChange={() => this.props.checkTodo(todo.id)} />
-                                            </div>
-                                           
-                                            <div className="col-lg-8 col-sm-1">
-                                                {this.todoTitle(todo)}  
-                                            </div>
-                                           
-                                            <div className="col-lg-1 col-sm-1">
-                                                 <button className="btn btn-sm btn-danger" onClick={() => this.props.deleteTodo(todo.id)}>Delete</button>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    )}
-            </div>
             </main>
         )
     }
@@ -121,7 +118,7 @@ class AddTodo extends Component {
 
 const checkboxDecoration = {
     textDecoration : "line-through" ,
-    color: "grey" ,
+    color: "grey"
   }
 
 function mapStateToProps(state){
@@ -137,8 +134,8 @@ function matchActionToProps(dispatch){
             addTodo: addTodoAction ,
             deleteTodo: deleteTodoAction,
             checkTodo: checkTodoAction
-        }, 
-        dispatch ) 
+        },
+        dispatch )
 }
 
 export default connect(mapStateToProps, matchActionToProps)(AddTodo)

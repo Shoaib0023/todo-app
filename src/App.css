@@ -1,22 +1,53 @@
 html, body {
-    background-color: rgba(211, 204, 224, 0.2) ;
-    font-family: 'Open Sans', sans-serif;
-}
-
-main {
-    background-color: rgba(211, 204, 224, 0.2) ;
-    font-family: 'Open Sans', sans-serif;
-}
-
-#main {
-    margin: 6rem;
-    padding: 5rem 3rem ;
-    /* border: 1px solid black; */
     /* background-color: rgba(211, 204, 224, 0.2) ; */
+    font-family: 'Open Sans', sans-serif;
+    height: 100vh ;
+    width: 100vw ;
+    overflow: hidden ;
 }
 
+#header {
+  background-color: black;
+  height: 10rem;
+  padding: 3rem 2rem ;
+  color: white ;
+  margin-bottom: 3rem ;
+}
 
-/* .card-body{
-    display: flex ;
-    justify-content: space-around;
-} */
+#form-container {
+  width: 35rem;
+  margin: 0 auto;
+}
+
+#todo-container {
+  display: block;
+  max-height: 35rem;
+  overflow: auto;
+}
+
+.todo {
+  margin: 2rem auto ;
+  width: 35rem;
+  padding: 2rem 2rem ;
+  display: flex ;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(211, 204, 224, 0.2) ;
+  border-radius: 1rem;
+}
+
+#title {
+  flex : 10;
+}
+
+.check-btn {
+  flex: 1
+}
+
+.submit-btn {
+  flex: 1
+}
+
+.fadebtn {
+  background-color: rgb(130, 30, 69) ;
+}
