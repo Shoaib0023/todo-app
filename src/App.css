@@ -1,5 +1,4 @@
 html, body {
-    /* background-color: rgba(211, 204, 224, 0.2) ; */
     font-family: 'Open Sans', sans-serif;
     height: 100vh ;
     width: 100vw ;
@@ -31,6 +30,7 @@ html, body {
   padding: 2rem 2rem ;
   display: flex ;
   justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center;
   background-color: rgba(211, 204, 224, 0.2) ;
   border-radius: 1rem;
@@ -44,10 +44,52 @@ html, body {
   flex: 1
 }
 
-.submit-btn {
+.delete-btn {
   flex: 1
 }
 
 .fadebtn {
   background-color: rgb(130, 30, 69) ;
+}
+
+
+@media only screen and (max-width: 580px) {
+
+  #form-container {
+    width: 25rem;
+    margin: 0 auto;
+  }
+
+  .todo {
+    margin: 1rem auto ;
+    width: 25rem;
+    padding: 2rem 2rem ;
+    display: flex ;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(211, 204, 224, 0.2) ;
+    border-radius: 1rem;
+  }
+
+}
+
+
+@media only screen and (max-width: 450px) {
+
+  #form-container {
+    width: 20rem;
+    margin: 0 auto;
+  }
+
+  .todo {
+    margin: 1rem auto ;
+    width: 20rem;
+    padding: 2rem 2rem ;
+    display: flex ;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(211, 204, 224, 0.2) ;
+    border-radius: 1rem;
+  }
+
 }

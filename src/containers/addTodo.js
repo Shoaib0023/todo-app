@@ -13,6 +13,7 @@ class AddTodo extends Component {
     constructor(props){
         super(props) ;
         this.state = {
+            'editing': false ,
             'title': ""
         }
     }
@@ -69,13 +70,13 @@ class AddTodo extends Component {
     deleteBtn = (todo) => {
       if(todo.completed === true){
         return (
-          <button className="btn btn-sm btn-danger submit-btn fadebtn" onClick={() => this.props.deleteTodo(todo.id)}>Delete</button>
+          <button className="btn btn-sm btn-danger delete-btn fadebtn" onClick={() => this.props.deleteTodo(todo.id)}><i class="fa fa-trash"></i></button>
         )
       }
 
       else {
         return (
-          <button className="btn btn-sm btn-danger submit-btn" onClick={() => this.props.deleteTodo(todo.id)}>Delete</button>
+          <button className="btn btn-sm btn-danger delete-btn" onClick={() => this.props.deleteTodo(todo.id)}><i class="fa fa-trash"></i></button>
         )
 
       }
@@ -100,11 +101,11 @@ class AddTodo extends Component {
                 <div id="todo-container">
                     {this.props.todos.map(todo =>
                         <div className="todo" key={todo.id}>
-                            <input type="checkbox" name="completed" className="mr-3 check-btn" checked={this.handleChecked(todo)} onChange={() => this.props.checkTodo(todo.id)} />
+                              <input type="checkbox" name="completed" className="mr-3 check-btn" checked={this.handleChecked(todo)} onChange={() => this.props.checkTodo(todo.id)} />
 
-                            {this.todoTitle(todo)}
+                              {this.todoTitle(todo)}
 
-                            {this.deleteBtn(todo)}
+                              {this.deleteBtn(todo)}
 
                         </div>
                       )}
